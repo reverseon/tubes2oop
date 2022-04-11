@@ -1,10 +1,12 @@
-package com.vtuberwars.model;
+package com.vtuberwars.model.card;
+
+import com.vtuberwars.model.player.*;
 
 public class SpellSwap extends Card implements HaveDuration, UsableCard {
     int duration;
     boolean active;
 
-    SpellSwap(int id, String name, String imagePath, String description, int manaCost, int duration) {
+    public SpellSwap(int id, String name, String imagePath, String description, int manaCost, int duration) {
         super(id, name, imagePath, description, manaCost);
         this.duration = duration;
         this.active = false;
@@ -23,7 +25,12 @@ public class SpellSwap extends Card implements HaveDuration, UsableCard {
     public boolean isActive() {
         return this.active;
     }
-    public void use(Player ourPlayer, int fieldPosition) {
+
+    public void useBuff(Player ourPlayer, int fieldPosition) {
+
+    }
+
+    public void useDebuff(Player ourPlayer, Player enemyPlayer, int fieldEnemyPosition) {
 
     }
 }

@@ -1,4 +1,6 @@
-package com.vtuberwars.model;
+package com.vtuberwars.model.card;
+
+import com.vtuberwars.model.player.*;
 
 public class SpellPotion extends Card implements HaveDuration, UsableCard {
     int duration;
@@ -6,7 +8,7 @@ public class SpellPotion extends Card implements HaveDuration, UsableCard {
     float healthMod;
     float attackMod;
 
-    SpellPotion(int id, String name, String imagePath, String description, int manaCost, int duration, float healthMod, float attackMod) {
+    public SpellPotion(int id, String name, String imagePath, String description, int manaCost, int duration, float healthMod, float attackMod) {
         super(id, name, imagePath, description, manaCost);
         this.duration = duration;
         this.active = false;
@@ -29,7 +31,12 @@ public class SpellPotion extends Card implements HaveDuration, UsableCard {
     public boolean isActive() {
         return this.active;
     }
-    public void use(Player ourPlayer, int fieldPosition) {
+    public void useBuff(Player ourPlayer, int fieldPosition) {
+
+
+    }
+
+    public void useDebuff(Player ourPlayer, Player enemyPlayer, int fieldEnemyPosition) {
 
     }
 }

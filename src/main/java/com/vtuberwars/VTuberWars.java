@@ -11,8 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import com.vtuberwars.model.Type;
-import com.vtuberwars.model.Character;
 import com.vtuberwars.util.CSVReader;
 
 public class VTuberWars extends Application {

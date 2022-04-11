@@ -1,4 +1,4 @@
-package com.vtuberwars.model;
+package com.vtuberwars.model.card;
 
 public class Card {
     private int id;
@@ -7,7 +7,7 @@ public class Card {
     private String description;
     private int manaCost;
 
-    Card(int id, String name, String imagePath, String description, int manaCost) {
+    public Card(int id, String name, String imagePath, String description, int manaCost) {
         this.id = id;
         this.name = name;
         this.imagePath = imagePath;

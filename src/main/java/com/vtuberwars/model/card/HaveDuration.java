@@ -1,4 +1,4 @@
-package com.vtuberwars.model;
+package com.vtuberwars.model.card;
 
 interface HaveDuration {
     public void reduceDuration();

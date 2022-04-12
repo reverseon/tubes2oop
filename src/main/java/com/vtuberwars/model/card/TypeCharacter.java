@@ -1,5 +1,5 @@
 package com.vtuberwars.model.card;
 
-public enum Type {
+public enum TypeCharacter {
   OVERWORLD, NETHER, END
 };

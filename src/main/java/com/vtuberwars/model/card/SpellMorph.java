@@ -6,7 +6,7 @@ public class SpellMorph extends Card implements UsableCard {
     private int targetId;
 
     public SpellMorph(int id, String name, String imagePath, String description, int manaCost, int targetId) {
-        super(id, name, imagePath, description, manaCost);
+        super(id, name, imagePath, description, manaCost, TypeCard.MORPH);
         this.targetId = targetId;
     }
 
@@ -14,11 +14,15 @@ public class SpellMorph extends Card implements UsableCard {
         return this.targetId;
     }
 
-    public void useBuff(Player ourPlayer, int fieldPosition) {
+    public void use(Player player, int fieldPosition, Card usingCard) {
+        int playerMana = player.getMana();
+        int cardManaCost = usingCard.getManaCost();
 
-    }
-
-    public void useDebuff(Player ourPlayer, Player enemyPlayer, int fieldEnemyPosition) {
-
+        if (playerMana >= cardManaCost) {
+            CardCharacter playerCard = (CardCharacter) player.getCardAtField(fieldPosition);
+            // tar fungsi nyari kartu karakter berdasarkan id
+        } else {
+            // tar exception
+        }
     }
 }

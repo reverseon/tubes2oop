@@ -43,14 +43,14 @@ public class Player {
     public int getMaxMana() {
         return this.maxMana;
     }
-    public DeckCardSpace getCardAtDeck() {
-        return this.cardAtDeck;
+    public Card getCardAtDeck(int Position) {
+        return this.cardAtDeck.getCard(Position);
     }
-    public ModifiableCardSpace getCardAtField() {
-        return this.cardAtField;
+    public Card getCardAtField(int Position) {
+        return this.cardAtField.getCard(Position);
     }
-    public ModifiableCardSpace getCardAtHand() {
-        return this.cardAtHand;
+    public Card getCardAtHand(int Position) {
+        return this.cardAtHand.getCard(Position);
     }
 
     public void moveToField(int handPosition, int fieldPosition) {

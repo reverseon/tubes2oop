@@ -74,7 +74,7 @@ public class CardCharacter extends Card {
         this.exp = 0;
     }
     public void addExp(int Exp) {
-
+        this.exp+=Exp;
     }
     public void setLevel(int level) {
         this.level = level;

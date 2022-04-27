@@ -1,6 +1,10 @@
 package com.vtuberwars.model.card;
 
-public class Card {
+import com.vtuberwars.model.cardspace.ModifiableCardSpace;
+
+import java.lang.reflect.Field;
+
+public abstract class Card {
     private int id;
     private String name;
     private String imagePath;
@@ -18,20 +22,28 @@ public class Card {
     public int getId() {
         return this.id;
     }
-
     public String getName() {
         return this.name;
     }
-
     public String getImagePath() {
         return this.imagePath;
     }
-
     public String getDescription() {
         return this.description;
     }
-
+    public void setManaCost(int manaCost) {
+        this.manaCost = manaCost;
+    }
     public int getManaCost() {
         return this.manaCost;
     }
+    public void printInfo() {
+        System.out.println("id: " + this.id);
+        System.out.println("name: " + this.name);
+        System.out.println("imagePath: " + this.imagePath);
+        System.out.println("description: " + this.description);
+        System.out.println("manaCost: " + this.manaCost);
+    }
+    public abstract void apply(Card Hand, Card Field);
+//    public abstract void render();
 }

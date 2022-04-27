@@ -2,9 +2,14 @@ package com.vtuberwars.model.card;
 
 import com.vtuberwars.model.player.*;
 
-public class SpellSwap extends SpellCard implements Useable {
+import java.util.List;
+import java.util.stream.Collectors;
 
-    public SpellSwap(int id, String name, String imagePath, String description, int manaCost, int duration) {
+public class SpellSwap extends SpellCard {
+
+    public SpellSwap(int id, String name, String imagePath,
+                     String description, int manaCost, int duration) {
+
         super(id, name, imagePath, description, manaCost, TypeSpell.SWAP, duration);
     }
 

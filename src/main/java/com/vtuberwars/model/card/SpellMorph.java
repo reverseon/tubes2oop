@@ -1,11 +1,16 @@
 package com.vtuberwars.model.card;
 
 import com.vtuberwars.model.player.*;
+import com.vtuberwars.util.DeckGenerator;
 
-public class SpellMorph extends SpellCard implements Useable {
+import java.util.stream.Collectors;
+
+public class SpellMorph extends SpellCard  {
     private int targetId;
 
-    public SpellMorph(int id, String name, String imagePath, String description, int manaCost, int duration, int targetId) {
+    public SpellMorph(int id, String name, String imagePath, String description,
+                      int manaCost, int duration, int targetId) {
+
         super(id, name, imagePath, description, manaCost, TypeSpell.MORPH, duration);
         this.targetId = targetId;
     }
@@ -17,16 +22,19 @@ public class SpellMorph extends SpellCard implements Useable {
         return this.targetId;
     }
 
-    public void use(Player player, int fieldPosition, Card usingCard) {
-        int playerMana = player.getMana();
-        int cardManaCost = usingCard.getManaCost();
-
-        if (playerMana >= cardManaCost) {
-            CharacterCard playerCard = (CharacterCard) player.getCardAtField(fieldPosition);
-            // tar fungsi nyari kartu karakter berdasarkan id
-        } else {
-            // tar exception
-        }
+    public void use(SummonedCard SM) {
+        SM = new SummonedCard(DeckGenerator.arrCharacter.stream().
+                filter(CC -> CC.getId() == this.targetId).map(CharacterCard.class::cast).
+                collect(Collectors.toList()).get(0));
+//        int playerMana = player.getMana();
+//        int cardManaCost = usingCard.getManaCost();
+//
+//        if (playerMana >= cardManaCost) {
+//            CharacterCard playerCard = (CharacterCard) player.getCardAtField(fieldPosition);
+//            // tar fungsi nyari kartu karakter berdasarkan id
+//        } else {
+//            // tar exception
+//        }
     }
     public void printInfo() {
         super.printInfo();

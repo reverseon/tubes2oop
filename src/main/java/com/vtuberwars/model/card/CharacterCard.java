@@ -4,8 +4,7 @@ import java.util.*;
 import com.vtuberwars.model.CLI.GameBoard;
 
 public class CharacterCard extends Card {
-    // private TypeCharacter typeCharacter;
-    private int typeCharacter;
+    private TypeCharacter typeCharacter;
     private float baseAttack;
     private float baseHealth;
     private float attackUp;
@@ -42,11 +41,16 @@ public class CharacterCard extends Card {
     //     this.effect_list = new ArrayList<Card>();
     // }
 
-    public CharacterCard(int id, String name, String imagePath, String description, int manaCost, int typeCharacter, float baseAttack, float baseHealth) {
+    public CharacterCard(int id, String name, String imagePath, String description,
+                         int manaCost, TypeCharacter typeCharacter, float baseAttack, float baseHealth,
+                         float attackUp, float healthUp) {
+
         super(id, name, imagePath, description, manaCost);
         this.typeCharacter = typeCharacter;
         this.baseAttack = baseAttack;
         this.baseHealth = baseHealth;
+        this.attackUp = attackUp;
+        this.healthUp = healthUp;
 //        this.attackBonus = 0;
 //        this.healthBonus = 0;
 //        this.exp = 0;
@@ -77,45 +81,14 @@ public class CharacterCard extends Card {
     public float getHealthUp() {
         return this.attackUp;
     }
-//    public float getAttackBonus() {
-//        return this.attackBonus;
-//    }
-//    public void setAttackBonus(float AttackBonus) {
-//        this.attackBonus = AttackBonus;
-//    }
-//    public float getHealthBonus() {
-//        return this.healthBonus;
-//    }
-//    public void setHealthBonus(float healthBonus) {
-//        this.healthBonus = healthBonus;
-//    }
-//    public int getExp() {
-//        return this.exp;
-//    }
-//    public int getLevel() {
-//        return this.level;
-//    }
-//    public boolean getStatusAttack() {
-//        return this.statusAttack;
-//    }
-//    public boolean isHaveSwapSpell() {
-//        for (int i = 0; i < this.effect_list.size(); i++) {
-//            if (this.effect_list.get(i).getTypeCard() == TypeCard.SWAP) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//    public void addEffect(Card kartu) {
-//        this.effect_list.add(kartu);
-//    }
-//    public void resetExp() {
-//        this.exp = 0;
-//    }
-//    public void addExp(int Exp) {
-//        this.exp+=Exp;
-//    }
-//    public void setLevel(int level) {
-//        this.level = level;
-//    }
+    public void printInfo(){
+        super.printInfo();
+        System.out.println("Type: " + this.typeCharacter);
+        System.out.println("");
+    }
+    public void apply(Card Hand, Card Field) {
+        if (Field == null) {
+            Field = new SummonedCard((CharacterCard) Hand);
+        }
+    }
 }

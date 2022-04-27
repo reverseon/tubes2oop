@@ -6,15 +6,13 @@ public class Card {
     private String imagePath;
     private String description;
     private int manaCost;
-    private TypeCard typeCard;
 
-    public Card(int id, String name, String imagePath, String description, int manaCost, TypeCard typeCard) {
+    public Card(int id, String name, String imagePath, String description, int manaCost) {
         this.id = id;
         this.name = name;
         this.imagePath = imagePath;
         this.description = description;
         this.manaCost = manaCost;
-        this.typeCard = typeCard;
     }
 
     public int getId() {
@@ -35,9 +33,5 @@ public class Card {
 
     public int getManaCost() {
         return this.manaCost;
-    }
-
-    public TypeCard getTypeCard() {
-        return this.typeCard;
     }
 }

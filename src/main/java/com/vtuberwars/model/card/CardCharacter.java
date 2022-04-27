@@ -3,18 +3,32 @@ package com.vtuberwars.model.card;
 import java.util.ArrayList;
 
 public class CardCharacter extends Card {
-    private TypeCharacter typeCharacter;
+    // private TypeCharacter typeCharacter;
+    private int typeCharacter;
     private float baseAttack;
     private float baseHealth;
-    private float attackBonus;
-    private float healthBonus;
-    private int exp;
-    private int level;
-    private boolean statusAttack;
-    private ArrayList<Card> effect_list;
+    // private float attackBonus;
+    // private float healthBonus;
+    // private int exp;
+    // private int level;
+    // private boolean statusAttack;
+    // private ArrayList<Card> effect_list;
 
-    public CardCharacter(int id, String name, String imagePath, String description, int manaCost, TypeCharacter typeCharacter, float baseAttack, float baseHealth) {
-        super(id, name, imagePath, description, manaCost, TypeCard.CHARACTER);
+    // public CardCharacter(int id, String name, String imagePath, String description, int manaCost, TypeCharacter typeCharacter, float baseAttack, float baseHealth) {
+    //     super(id, name, imagePath, description, manaCost, TypeCard.CHARACTER);
+    //     this.typeCharacter = typeCharacter;
+    //     this.baseAttack = baseAttack;
+    //     this.baseHealth = baseHealth;
+    //     this.attackBonus = 0;
+    //     this.healthBonus = 0;
+    //     this.exp = 0;
+    //     this.level = 1;
+    //     this.statusAttack = false;
+    //     this.effect_list = new ArrayList<Card>();
+    // }
+
+    public CardCharacter(int id, String name, String imagePath, String description, int manaCost, int typeCharacter, float baseAttack, float baseHealth) {
+        super(id, name, imagePath, description, manaCost);
         this.typeCharacter = typeCharacter;
         this.baseAttack = baseAttack;
         this.baseHealth = baseHealth;
@@ -26,6 +40,12 @@ public class CardCharacter extends Card {
         this.effect_list = new ArrayList<Card>();
     }
 
+    public void setTypeCharacter(int type) {
+        this.typeCharacter = type;
+    }
+    public int getTypeCharacter() {
+        return this.typeCharacter;
+    }
     public float getBaseAttack() {
         return this.baseAttack;
     }

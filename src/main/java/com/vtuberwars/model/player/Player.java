@@ -54,26 +54,51 @@ public class Player {
     }
 
     public void moveToField(int handPosition, int fieldPosition) {
-
+        Card tmp = this.cardAtHand.getCard(handPosition);
+        this.cardAtField.setCard(tmp, fieldPosition);
+        this.cardAtHand.deleteCard(handPosition);
     }
 
-    public void addToHand(int handPosition) {
+    public int getEmptyHandPos(){
+        for (int i = 0; i < this.cardAtHand.getMaxCap(); i++) {
+            if (this.cardAtHand.getCard(i) == null) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
+    public void addToHand(Card kartu, int deckPosition) {
+        if(getEmptyHandPos() != -1){
+            this.cardAtHand.setCard(kartu, getEmptyHandPos());
+            this.DeckCardSpace.deleteCard(deckPosition);
+        }
     }
 
     public void discardHand(int handPosition) {
-
+        this.cardAtHand.deleteCard(handPosition);
     }
 
     public void discardField(int fieldPosition) {
-
+        this.cardAtField.deleteCard(fieldPosition);
     }
 
     public void pickACardFromDeck(int id) {
-
+        Card cardTmp = this.DeckCardSpace.getCard(id);
+        addToHand(cardTmp, id);
     }
 
-    public void attack(Player playerEnemy, int enemyFieldPosition) {
-
+    public void attack(Player playerEnemy, int enemyFieldPosition, int playerFieldPosition) {
+        Card playerCard = this.getCardAtField(playerFieldPosition);
+        Card enemyCard = playerEnemy.getCardAtField(enemyFieldPosition);
+        int power = enemyCard.getType() - playerCard.getType();
+        if(power == 2){
+            power = -1;
+        } else if (power == -2) {
+            power = 1;
+        }
+        
+        playerCard.setHealth(playerCard.getHealth() - (enemyCard.getAttack() + enemyCard.getAttackBonus())*(2**power));
+        enemyCard.setHealth(enemyCard.getHealth() - (playerCard.getAttack() + playerCard.getAttackBonus())*(2**(-power)));
     }
 }

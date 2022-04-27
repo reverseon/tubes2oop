@@ -19,4 +19,15 @@ public abstract class SpellCard extends Card implements HaveDuration {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Type: " + this.typeSpell);
+        System.out.println("Duration: " + this.duration);
+    }
+    public void apply(Card Hand, Card Field) {
+        if (Field != null) {
+            ((SummonedCard) Hand).addSpell((SpellCard) Field);
+        }
+    }
+    public abstract void use(SummonedCard SM);
 }

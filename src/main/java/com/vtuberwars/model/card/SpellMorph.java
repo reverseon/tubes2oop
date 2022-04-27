@@ -10,6 +10,9 @@ public class SpellMorph extends SpellCard implements Useable {
         this.targetId = targetId;
     }
 
+    public static SpellMorph cctorMorph(SpellMorph spellMorph) {
+        return new SpellMorph(spellMorph.getId(), spellMorph.getName(), spellMorph.getImagePath(), spellMorph.getDescription(), spellMorph.getManaCost(), spellMorph.getDuration(), spellMorph.getTargetId());
+    }
     public int getTargetId() {
         return this.targetId;
     }
@@ -24,5 +27,10 @@ public class SpellMorph extends SpellCard implements Useable {
         } else {
             // tar exception
         }
+    }
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Target Id: " + this.targetId);
+        System.out.println("");
     }
 }

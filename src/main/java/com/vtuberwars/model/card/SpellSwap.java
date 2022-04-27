@@ -9,8 +9,26 @@ public class SpellSwap extends SpellCard implements Useable {
     }
 
 
-    public void use(Player player, int fieldPosition, Card usingCard) {
-        int a = 0;
+    public static SpellSwap cctorSwap(SpellSwap card) {
+        return new SpellSwap(card.getId(), card.getName(), card.getImagePath(),card.getDescription(), card.getManaCost(), card.getDuration());
+    }
+    public void use(SummonedCard SM) {
+        List<SpellPotion> temp =
+                SM.getActiveSpells().stream().
+                        filter(SpellPotion.class::isInstance).
+                        map(SpellPotion.class::cast).collect(Collectors.toList());
+
+        for (SpellPotion SP : temp) {
+            float tempHealth = SP.getHealthMod();
+            float tempAttack = SP.getAttackMod();
+            SP.setHealthMod(tempAttack);
+            SP.setAttackMod(tempHealth);
+        }
+        float tempBaseAttack = SM.getBaseAttack();
+        float tempHealthNow = SM.getBaseHealth();
+        SM.setBaseAttack(tempHealthNow);
+        SM.setBaseHealth(tempBaseAttack);
+
 //        int playerMana = player.getMana();
 //        int cardManaCost = usingCard.getManaCost();
 //        // check playerMana
@@ -39,5 +57,9 @@ public class SpellSwap extends SpellCard implements Useable {
 //        } else {
 //            // tar exception
 //        }
+    }
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("");
     }
 }

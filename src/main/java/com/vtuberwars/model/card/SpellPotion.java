@@ -12,6 +12,12 @@ public class SpellPotion extends SpellCard implements Useable {
         this.attackMod = attackMod;
     }
 
+    public static SpellPotion cctorPotion(SpellPotion potion) {
+        return new SpellPotion(potion.getId(), potion.getName(), potion.getImagePath(),
+                potion.getDescription(), potion.getManaCost(), potion.getDuration(), potion.getHealthMod(),
+                potion.getAttackMod());
+    }
+
     public float getHealthMod() {
         return this.healthMod;
     }
@@ -52,5 +58,11 @@ public class SpellPotion extends SpellCard implements Useable {
 //        } else {
 //            // tar exception
 //        }
+    }
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Health Mod: " + this.healthMod);
+        System.out.println("Attack Mod: " + this.attackMod);
+        System.out.println("");
     }
 }

@@ -8,11 +8,7 @@ public class DeckCardSpace extends CardSpace {
         super(MaxCap);
     }
 
-    public Card[] getTop3Card() {
-        Card[] result = new Card[3];
 
-        return result;
-    }
 
     public void deleteCard(int id) {
 

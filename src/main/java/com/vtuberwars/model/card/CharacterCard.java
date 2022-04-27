@@ -1,5 +1,8 @@
 package com.vtuberwars.model.card;
 
+import java.util.*;
+import com.vtuberwars.model.CLI.GameBoard;
+
 public class CharacterCard extends Card {
     // private TypeCharacter typeCharacter;
     private int typeCharacter;
@@ -7,6 +10,18 @@ public class CharacterCard extends Card {
     private float baseHealth;
     private float attackUp;
     private float healthUp;
+    public static Hashtable<TypeCharacter, Integer> characterType = new Hashtable<TypeCharacter, Integer>();
+    public static Hashtable<String, TypeCharacter> characterTypeDeckParsing = new Hashtable<String, TypeCharacter>();
+    static {
+        characterType.put(TypeCharacter.OVERWORLD, 1);
+        characterType.put(TypeCharacter.NETHER, 2);
+        characterType.put(TypeCharacter.END, 3);
+
+        characterTypeDeckParsing.put("OVERWORLD", TypeCharacter.OVERWORLD);
+        characterTypeDeckParsing.put("NETHER", TypeCharacter.NETHER);
+        characterTypeDeckParsing.put("END", TypeCharacter.END);
+    }
+
     // private float attackBonus;
     // private float healthBonus;
     // private int exp;
@@ -40,7 +55,14 @@ public class CharacterCard extends Card {
 //        this.effect_list = new ArrayList<Card>();
     }
 
-    public int getTypeCharacter() {
+    public static CharacterCard cctorCharacter(CharacterCard CC) {
+        CharacterCard newCC = new CharacterCard(CC.getId(), CC.getName(), CC.getImagePath(), CC.getDescription(), CC.getManaCost(), CC.getTypeCharacter(), CC.getBaseAttack(), CC.getBaseHealth(), CC.getAttackUp(), CC.getHealthUp());
+        return newCC;
+    }
+    public void setTypeCharacter(TypeCharacter typeCharacter) {
+        this.typeCharacter = typeCharacter;
+    }
+    public TypeCharacter getTypeCharacter() {
         return this.typeCharacter;
     }
     public float getBaseAttack() {

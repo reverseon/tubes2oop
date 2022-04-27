@@ -8,11 +8,10 @@ public class ModifiableCardSpace extends CardSpace {
         super(MaxCap);
     }
 
-    public void deleteCard(int Position) {
-        this.ArrayCard[Position] = null;
-    }
+
 
     public void addCard(Card Kartu, int Position) {
-        this.ArrayCard[Position] = Kartu;
+        this.setCard(Kartu,Position);
+        this.setNEff(this.getNEff()+1);
     }
 }

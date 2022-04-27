@@ -75,4 +75,9 @@ public class SummonedCard implements Summoned {
     public List<SpellCard> getActiveSpells() {
         return this.activeSpells;
     }
+
+    public void attack(SummonedCard enemy){
+        enemy.takeDamage(this.getTotalAttack());
+        this.takeDamage(enemy.getTotalAttack());
+    }
 }

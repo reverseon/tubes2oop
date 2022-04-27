@@ -2,24 +2,25 @@ package com.vtuberwars.model.player;
 
 import com.vtuberwars.model.card.*;
 import com.vtuberwars.model.cardspace.*;
+import com.vtuberwars.util.DeckGenerator;
 
 public class Player {
     private String name;
     private float health;
     private int mana;
     private int maxMana;
-    private DeckCardSpace cardAtDeck;
-    private ModifiableCardSpace cardAtField;
-    private ModifiableCardSpace cardAtHand;
+    private CardSpace cardAtDeck;
+    private CardSpace cardAtField;
+    private CardSpace cardAtHand;
 
     public Player(String name) {
         this.name = name;
         this.health = 80;
         this.mana = 1;
         this.maxMana = 1;
-        this.cardAtDeck = new DeckCardSpace((int)(Math.random() * ((60 - 40) + 1)+ 40));
-        this.cardAtField = new ModifiableCardSpace(5);
-        this.cardAtHand = new ModifiableCardSpace(5);
+        this.cardAtDeck = DeckGenerator.generateDeck(40);
+        this.cardAtField = new CardSpace(5);
+        this.cardAtHand = new CardSpace(5);
     }
 
     public String getName() {
@@ -47,12 +48,15 @@ public class Player {
         return this.cardAtDeck.getCard(Position);
     }
     public Card getCardAtField(int Position) {
-        return this.cardAtField.getCard(Position);
+        return this.cardAtField.getArrayCard().get(Position);
     }
     public Card getCardAtHand(int Position) {
         return this.cardAtHand.getCard(Position);
     }
 
+    public CardSpace getCardAtHand() {
+        return this.cardAtHand;
+    }
     public void moveToField(int handPosition, int fieldPosition) {
         Card tmp = this.cardAtHand.getCard(handPosition);
         this.cardAtField.setCard(tmp, fieldPosition);

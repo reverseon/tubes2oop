@@ -2,11 +2,11 @@ package com.vtuberwars.model.card;
 
 import com.vtuberwars.model.player.*;
 
-public class SpellMorph extends Card implements UsableCard {
+public class SpellMorph extends SpellCard implements Useable {
     private int targetId;
 
-    public SpellMorph(int id, String name, String imagePath, String description, int manaCost, int targetId) {
-        super(id, name, imagePath, description, manaCost, TypeCard.MORPH);
+    public SpellMorph(int id, String name, String imagePath, String description, int manaCost, int duration, int targetId) {
+        super(id, name, imagePath, description, manaCost, TypeSpell.MORPH, duration);
         this.targetId = targetId;
     }
 
@@ -19,7 +19,7 @@ public class SpellMorph extends Card implements UsableCard {
         int cardManaCost = usingCard.getManaCost();
 
         if (playerMana >= cardManaCost) {
-            CardCharacter playerCard = (CardCharacter) player.getCardAtField(fieldPosition);
+            CharacterCard playerCard = (CharacterCard) player.getCardAtField(fieldPosition);
             // tar fungsi nyari kartu karakter berdasarkan id
         } else {
             // tar exception

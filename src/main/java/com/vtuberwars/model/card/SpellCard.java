@@ -1,6 +1,6 @@
 package com.vtuberwars.model.card;
 
-public class SpellCard extends Card {
+public abstract class SpellCard extends Card implements HaveDuration {
     private TypeSpell typeSpell;
     private int duration;
 
@@ -10,7 +10,13 @@ public class SpellCard extends Card {
         this.duration = duration;
     }
 
-    public getTypeSpell() {
+    public TypeSpell getTypeSpell() {
         return this.typeSpell;
+    }
+    public int getDuration() {
+        return this.duration;
+    }
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

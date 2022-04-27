@@ -1,5 +1,5 @@
 package com.vtuberwars.model.card;
 
-public enum TypeCard {
+public enum TypeSpell {
     POTION, SWAP, MORPH, LEVEL, CHARACTER;
 }

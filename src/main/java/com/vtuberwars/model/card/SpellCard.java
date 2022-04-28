@@ -1,5 +1,7 @@
 package com.vtuberwars.model.card;
 
+import com.vtuberwars.model.cardspace.CardSpace;
+
 public abstract class SpellCard extends Card implements HaveDuration {
     private TypeSpell typeSpell;
     private int duration;
@@ -26,10 +28,10 @@ public abstract class SpellCard extends Card implements HaveDuration {
         System.out.println("Type: " + this.typeSpell);
         System.out.println("Duration: " + this.duration);
     }
-    public void apply(Card Hand, Card Field) {
-        if (Field != null) {
-            ((SummonedCard) Hand).addSpell((SpellCard) Field);
+    public void apply(CardSpace Fields, int position) {
+        if (Fields.getCard(position) != null) {
+            ((SummonedCard) Fields.getCard(position)).addSpell((SpellCard) this);
         }
     }
-    public abstract void use(SummonedCard SM);
+    public abstract SummonedCard use(SummonedCard SM);
 }

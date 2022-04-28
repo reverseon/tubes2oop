@@ -1,5 +1,6 @@
 package com.vtuberwars.model.card;
 
+import com.vtuberwars.model.cardspace.CardSpace;
 import com.vtuberwars.model.cardspace.ModifiableCardSpace;
 
 import java.lang.reflect.Field;
@@ -44,6 +45,6 @@ public abstract class Card {
         System.out.println("description: " + this.description);
         System.out.println("manaCost: " + this.manaCost);
     }
-    public abstract void apply(Card Hand, Card Field);
+    public abstract void apply(CardSpace Fields, int position);
 //    public abstract void render();
 }

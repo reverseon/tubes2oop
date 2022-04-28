@@ -4,6 +4,8 @@ import com.vtuberwars.model.card.*;
 import com.vtuberwars.model.cardspace.*;
 import com.vtuberwars.util.DeckGenerator;
 
+import java.util.List;
+
 public class Player {
     private String name;
     private float health;
@@ -21,6 +23,10 @@ public class Player {
         this.cardAtDeck = DeckGenerator.generateDeck(40);
         this.cardAtField = new CardSpace(5);
         this.cardAtHand = new CardSpace(5);
+        for (int i = 0; i < 5; i++) {
+            this.cardAtField.getArrayCard().add(null);
+            this.cardAtHand.getArrayCard().add(null);
+        }
     }
 
     public String getName() {
@@ -44,15 +50,18 @@ public class Player {
     public int getMaxMana() {
         return this.maxMana;
     }
-    public Card getCardAtDeck(int Position) {
+    public Card getACardAtDeck(int Position) {
         return this.cardAtDeck.getCard(Position);
     }
-    public Card getCardAtField(int Position) {
+    public CardSpace getCardsAtDeck() { return this.cardAtDeck; }
+    public Card getACardAtField(int Position) {
         return this.cardAtField.getArrayCard().get(Position);
     }
-    public Card getCardAtHand(int Position) {
+    public CardSpace getCardsAtField() { return this.cardAtField; }
+    public Card getACardAtHand(int Position) {
         return this.cardAtHand.getCard(Position);
     }
+    public CardSpace getCardsAtHand() { return this.cardAtHand; }
 
     public CardSpace getCardAtHand() {
         return this.cardAtHand;
@@ -92,9 +101,10 @@ public class Player {
         addToHand(cardTmp, id);
     }
 
+
     public void attack(Player playerEnemy, int enemyFieldPosition, int playerFieldPosition) {
-        SummonedCard playerCard = (SummonedCard) this.getCardAtField(playerFieldPosition);
-        SummonedCard enemyCard = (SummonedCard) playerEnemy.getCardAtField(enemyFieldPosition);
+        SummonedCard playerCard = (SummonedCard) this.getACardAtField(playerFieldPosition);
+        SummonedCard enemyCard = (SummonedCard) playerEnemy.getACardAtField(enemyFieldPosition);
         int power = CharacterCard.characterType.get(enemyCard.getTypeCharacter()) - CharacterCard.characterType.get(playerCard.getTypeCharacter());
         if(power == 2){
             power = -1;

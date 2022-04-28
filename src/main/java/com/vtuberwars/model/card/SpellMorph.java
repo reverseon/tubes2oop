@@ -22,10 +22,11 @@ public class SpellMorph extends SpellCard  {
         return this.targetId;
     }
 
-    public void use(SummonedCard SM) {
+    public SummonedCard use(SummonedCard SM) {
         SM = new SummonedCard(DeckGenerator.arrCharacter.stream().
                 filter(CC -> CC.getId() == this.targetId).map(CharacterCard.class::cast).
                 collect(Collectors.toList()).get(0));
+        return SM;
 //        int playerMana = player.getMana();
 //        int cardManaCost = usingCard.getManaCost();
 //

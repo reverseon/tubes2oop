@@ -119,7 +119,7 @@ public class  DeckGenerator {
         for(int i = 0; i < 5; i++) {
             deckCardSpace.insertCard(SpellMorph.cctorMorph(DeckGenerator.arrMorph.get(random.nextInt(6))));
         }
-        shuffleDeck(deckCardSpace);
+//        shuffleDeck(deckCardSpace);
         return deckCardSpace;
     }
     public static void shuffleDeck(CardSpace deckCardSpace) {

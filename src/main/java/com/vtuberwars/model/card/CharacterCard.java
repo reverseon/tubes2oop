@@ -2,6 +2,7 @@ package com.vtuberwars.model.card;
 
 import java.util.*;
 import com.vtuberwars.model.CLI.GameBoard;
+import com.vtuberwars.model.cardspace.CardSpace;
 
 public class CharacterCard extends Card {
     private TypeCharacter typeCharacter;
@@ -86,9 +87,10 @@ public class CharacterCard extends Card {
         System.out.println("Type: " + this.typeCharacter);
         System.out.println("");
     }
-    public void apply(Card Hand, Card Field) {
-        if (Field == null) {
-            Field = new SummonedCard((CharacterCard) Hand);
+    public void apply(CardSpace Fields, int position) {
+        System.out.println("Masuk");
+        if (Fields.getCard(position) == null) {
+            Fields.setCard(this, position);
         }
     }
 }

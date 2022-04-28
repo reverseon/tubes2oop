@@ -20,13 +20,14 @@ public class SpellLevel extends SpellCard {
         super.setManaCost((int) Math.ceil((level)/ 2.0));
     }
 
-    public void use(SummonedCard SM) {
+    public SummonedCard use(SummonedCard SM) {
         if (this.typeLevel == LevelSpellType.LVLUP) {
             SM.levelUp();
         } else {
             SM.levelDown();
         }
         SM.addSpell(this);
+        return SM;
     }
 
 }

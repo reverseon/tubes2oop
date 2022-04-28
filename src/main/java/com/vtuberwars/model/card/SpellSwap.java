@@ -17,7 +17,7 @@ public class SpellSwap extends SpellCard {
     public static SpellSwap cctorSwap(SpellSwap card) {
         return new SpellSwap(card.getId(), card.getName(), card.getImagePath(),card.getDescription(), card.getManaCost(), card.getDuration());
     }
-    public void use(SummonedCard SM) {
+    public SummonedCard use(SummonedCard SM) {
         List<SpellPotion> temp =
                 SM.getActiveSpells().stream().
                         filter(SpellPotion.class::isInstance).
@@ -33,6 +33,7 @@ public class SpellSwap extends SpellCard {
         float tempHealthNow = SM.getBaseHealth();
         SM.setBaseAttack(tempHealthNow);
         SM.setBaseHealth(tempBaseAttack);
+        return SM;
 
 //        int playerMana = player.getMana();
 //        int cardManaCost = usingCard.getManaCost();

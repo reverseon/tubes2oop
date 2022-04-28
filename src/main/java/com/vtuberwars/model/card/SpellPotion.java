@@ -33,8 +33,9 @@ public class SpellPotion extends SpellCard  {
         return attackMod;
     }
 
-    public void use(SummonedCard SM) {
+    public SummonedCard use(SummonedCard SM) {
         SM.addSpell(this);
+        return SM;
     }
     public void printInfo() {
         super.printInfo();

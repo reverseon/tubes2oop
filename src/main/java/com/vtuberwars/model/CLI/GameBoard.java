@@ -53,6 +53,6 @@ public class GameBoard {
 //        }
 
         gameBoard.handToField(player1,player2,0,0);
-        player1.getACardAtField(0).printInfo();
+        ((SummonedCard) player1.getACardAtField(0)).printInfo();
     }
 }

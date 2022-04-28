@@ -31,8 +31,8 @@ public class SpellSwap extends SpellCard {
         }
         float tempBaseAttack = SM.getBaseAttack();
         float tempHealthNow = SM.getBaseHealth();
-        SM.setBaseAttack(tempHealthNow);
-        SM.setBaseHealth(tempBaseAttack);
+        SM.setAttack(tempHealthNow);
+        SM.setHealth(tempBaseAttack);
         return SM;
 
 //        int playerMana = player.getMana();

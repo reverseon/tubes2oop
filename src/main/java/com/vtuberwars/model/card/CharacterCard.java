@@ -85,12 +85,17 @@ public class CharacterCard extends Card {
     public void printInfo(){
         super.printInfo();
         System.out.println("Type: " + this.typeCharacter);
+        System.out.println("Base Attack: " + this.baseAttack);
+        System.out.println("Attak Up : " + this.attackUp);
+        System.out.println("Base Health: " + this.baseHealth);
+        System.out.println("Health Up: " + this.healthUp);
         System.out.println("");
     }
     public void apply(CardSpace Fields, int position) {
         System.out.println("Masuk");
         if (Fields.getCard(position) == null) {
-            Fields.setCard(this, position);
+            SummonedCard SM = new SummonedCard(this);
+            Fields.setCard(SM, position);
         }
     }
 }

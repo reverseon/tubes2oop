@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SummonedCard extends CharacterCard implements Summoned {
-    private float baseAttack;
-    private float baseHealth;
+    private float attack;
+    private float health;
     private int level;
     private int exp;
     private List<SpellCard> activeSpells;
@@ -18,8 +18,8 @@ public class SummonedCard extends CharacterCard implements Summoned {
         super(id, name, imagePath, description, manaCost,
                 typeCharacter, baseAttack, baseHealth, attackUp, healthUp);
 
-        this.baseAttack = super.getBaseAttack();
-        this.baseHealth = super.getBaseHealth();
+        this.attack = super.getBaseAttack();
+        this.health = super.getBaseHealth();
         this.level = 1;
         this.exp = 0;
         this.activeSpells = new ArrayList<>();
@@ -31,8 +31,8 @@ public class SummonedCard extends CharacterCard implements Summoned {
                 characterCard.getBaseAttack(), characterCard.getBaseHealth(),
                 characterCard.getAttackUp(), characterCard.getHealthUp());
 
-        this.baseAttack = super.getBaseAttack();
-        this.baseHealth = super.getBaseHealth();
+        this.attack = super.getBaseAttack();
+        this.health = super.getBaseHealth();
         this.level = 1;
         this.exp = 0;
         this.activeSpells = new ArrayList<>();
@@ -43,17 +43,17 @@ public class SummonedCard extends CharacterCard implements Summoned {
     public float getTotalHp() {
         return getBaseHealth() + getHealthBonus();
     }
-    public void setBaseAttack(float baseAttack) {
-        this.baseAttack = baseAttack;
+    public void setAttack(float baseAttack) {
+        this.attack = baseAttack;
     }
-    public float getBaseAttack() {
-        return this.baseAttack;
+    public float getAttack() {
+        return this.attack;
     }
-    public void setBaseHealth(float baseHealth) {
-        this.baseHealth = baseHealth;
+    public void setHealth(float baseHealth) {
+        this.health = baseHealth;
     }
-    public float getBaseHealth() {
-        return this.baseHealth;
+    public float getHealth() {
+        return this.health;
     }
     public float getAttackBonus() {
         return (float) this.activeSpells.stream().filter(sc -> sc.getTypeSpell() == TypeSpell.POTION).
@@ -75,17 +75,17 @@ public class SummonedCard extends CharacterCard implements Summoned {
     }
     public void levelUp() {
         if (this.level < 10) {
-            this.baseAttack += super.getAttackUp();
-            this.baseHealth += super.getHealthUp();
+            this.attack += super.getAttackUp();
+            this.health += super.getHealthUp();
             this.level++;
         }  else {
-            this.baseHealth = super.getBaseHealth() + 10 * super.getHealthUp();
+            this.health = super.getBaseHealth() + 10 * super.getHealthUp();
         }
     }
     public void levelDown() {
         if (this.level > 1) {
-            this.baseAttack -= super.getAttackUp();
-            this.baseHealth -= super.getHealthUp();
+            this.attack -= super.getAttackUp();
+            this.health -= super.getHealthUp();
             this.level--;
         }
     }
@@ -110,7 +110,7 @@ public class SummonedCard extends CharacterCard implements Summoned {
             }
         }
         if (damage > 0) {
-            this.baseHealth -= damage;
+            this.health -= damage;
         }
     }
     public void addSpell(SpellCard SC) {
@@ -131,5 +131,25 @@ public class SummonedCard extends CharacterCard implements Summoned {
     public void attack(SummonedCard enemy){
         enemy.takeDamage(this.getTotalAttack());
         this.takeDamage(enemy.getTotalAttack());
+    }
+
+    public void printInfo() {
+        System.out.println("Attack: " + this.attack);
+        System.out.println("Bonus Attack: " + this.getAttackBonus());
+        System.out.println("Total Attack: " + this.getTotalAttack());
+        System.out.println("Health: " + this.health);
+        System.out.println("Bonus Health: " + this.getAttackBonus());
+        System.out.println("Total Health: " + this.getTotalHp());
+        System.out.println("Level: " + this.level);
+        System.out.printf("Exp: %d/%d\n", this.exp, this.level*2 +1);
+        if (this.activeSpells.size() > 0) {
+            for (SpellCard SC : this.activeSpells) {
+                System.out.print("Spell :");
+                SC.printInfo();
+            }
+        } else {
+            System.out.println("Tidak memiliki Spell apapun");
+        }
+
     }
 }

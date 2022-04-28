@@ -4,11 +4,11 @@ import java.util.*;
 
 public interface Summoned {
 
-    public void setBaseAttack(float baseAttack);
-    public float getBaseAttack();
+    public void setAttack(float baseAttack);
+    public float getAttack();
 
-    public void setBaseHealth(float baseHealth);
-    public float getBaseHealth();
+    public void setHealth(float baseHealth);
+    public float getHealth();
 
     public float getAttackBonus();
     public float getHealthBonus();

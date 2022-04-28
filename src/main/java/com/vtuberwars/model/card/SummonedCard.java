@@ -134,6 +134,8 @@ public class SummonedCard extends CharacterCard implements Summoned {
     }
 
     public void printInfo() {
+        super.printInfo();
+        System.out.println("Status Summoned Card : ");
         System.out.println("Attack: " + this.attack);
         System.out.println("Bonus Attack: " + this.getAttackBonus());
         System.out.println("Total Attack: " + this.getTotalAttack());

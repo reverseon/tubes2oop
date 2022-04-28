@@ -43,16 +43,29 @@ public class GameBoard {
         Player player1 = new Player("player1");
         Player player2 = new Player("player2");
         GameBoard gameBoard = new GameBoard(player1, player2);
+        player1.getACardAtDeck(30).printInfo();
+        player1.addToHand(player1.getACardAtDeck(30),30);
         player1.addToHand(player1.getACardAtDeck(0),0);
-        player1.addToHand(player1.getACardAtDeck(1),1);
+
 //        for(Card i : player1.getCardAtHand().getArrayCard()){
 //            if (i != null) {
 //                i.printInfo();
 //            }
 //
 //        }
-
+        player1.getACardAtHand(1).printInfo();
+        gameBoard.handToField(player1,player2,1,0);
+        System.out.println("KONTOL");
+        player1.getACardAtField(0).printInfo();
+        System.out.println("\nKENA SPELL\n");
         gameBoard.handToField(player1,player2,0,0);
-        ((SummonedCard) player1.getACardAtField(0)).printInfo();
+        player1.getACardAtField(0).printInfo();
+//        gameBoard.handToField(player2,player1,0,0);
+//        player1.getACardAtField(0).printInfo();
+//        player2.getACardAtField(0).printInfo();
+//        gameBoard.attack(player1,player2,0,0);
+//        System.out.println("ATTACK SUCCESS");
+//        player1.getACardAtField(0).printInfo();
+//        player2.getACardAtField(0).printInfo();
     }
 }

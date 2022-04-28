@@ -89,7 +89,6 @@ public class CharacterCard extends Card {
         System.out.println("Attak Up : " + this.attackUp);
         System.out.println("Base Health: " + this.baseHealth);
         System.out.println("Health Up: " + this.healthUp);
-        System.out.println("");
     }
     public void apply(CardSpace Fields, int position) {
         System.out.println("Masuk");

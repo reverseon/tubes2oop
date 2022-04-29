@@ -38,10 +38,10 @@ public class SummonedCard extends CharacterCard implements Summoned {
         this.activeSpells = new ArrayList<>();
     }
     public float getTotalAttack(){
-        return getBaseAttack() + getAttackBonus();
+        return this.attack + getAttackBonus();
     }
     public float getTotalHp() {
-        return getBaseHealth() + getHealthBonus();
+        return this.health + getHealthBonus();
     }
     public void setAttack(float baseAttack) {
         this.attack = baseAttack;
@@ -55,10 +55,12 @@ public class SummonedCard extends CharacterCard implements Summoned {
     public float getHealth() {
         return this.health;
     }
+
     public float getAttackBonus() {
         return (float) this.activeSpells.stream().filter(sc -> sc.getTypeSpell() == TypeSpell.POTION).
                 map(sc -> (SpellPotion) sc).mapToDouble(sc -> sc.getAttackMod()).sum();
     }
+
     public float getHealthBonus() {
         return (float) this.activeSpells.stream().filter(sc -> sc.getTypeSpell() == TypeSpell.POTION).
                 map(sc -> (SpellPotion) sc).mapToDouble(sc -> sc.getHealthMod()).sum();
@@ -79,7 +81,7 @@ public class SummonedCard extends CharacterCard implements Summoned {
             this.health += super.getHealthUp();
             this.level++;
         }  else {
-            this.health = super.getBaseHealth() + 10 * super.getHealthUp();
+            this.health = super.getBaseHealth() + 9 * super.getHealthUp();
         }
     }
     public void levelDown() {
@@ -92,21 +94,23 @@ public class SummonedCard extends CharacterCard implements Summoned {
     public int getLevel() {
         return this.level;
     }
+
     public void takeDamage(float damage) {
         List<SpellCard> temp =
                 this.activeSpells.stream().
                 filter(SpellPotion.class::isInstance).
                 map(SpellPotion.class::cast).collect(Collectors.toList());
-
-        for (SpellCard SC : temp) {
-            if (SC.getTypeSpell() == TypeSpell.POTION) {
-                float healthPoint = ((SpellPotion) SC).getHealthMod();
-                ((SpellPotion) SC).setHealthMod(
-                        Math.max(healthPoint - damage, 0));
-                damage = Math.max(damage - healthPoint, 0);
-            }
-            if (damage == 0) {
-                return;
+        if (damage > 0) {
+            for (SpellCard SC : temp) {
+                if (SC.getTypeSpell() == TypeSpell.POTION) {
+                    float healthPoint = ((SpellPotion) SC).getHealthMod();
+                    ((SpellPotion) SC).setHealthMod(
+                            Math.max(healthPoint - damage, 0));
+                    damage = Math.max(damage - healthPoint, 0);
+                }
+                if (damage == 0) {
+                    return;
+                }
             }
         }
         if (damage > 0) {
@@ -114,15 +118,21 @@ public class SummonedCard extends CharacterCard implements Summoned {
         }
     }
     public void addSpell(SpellCard SC) {
-        for (SpellCard Spell : this.activeSpells) {
-            if (SC.getId() == Spell.getId() && (Spell.getTypeSpell() == TypeSpell.SWAP ||
-                    Spell.getTypeSpell() == TypeSpell.LEVEL)) {
-                Spell.setDuration(Spell.getDuration() + SC.getDuration());
-                return;
-            }
-        }
+
         this.activeSpells.add(0, SC);
 
+    }
+    public void reduceSpell() {
+        for (int i = 0; i < this.activeSpells.size(); i++) {
+            SpellCard SC = this.activeSpells.get(i);
+            if (SC.getDuration() == 1) {
+                this.activeSpells.remove(SC);
+                if (SC.getTypeSpell() == TypeSpell.SWAP) {
+                    swapStat();
+                }
+            }
+            SC.setDuration(SC.getDuration()-1);
+        }
     }
     public List<SpellCard> getActiveSpells() {
         return this.activeSpells;
@@ -133,25 +143,67 @@ public class SummonedCard extends CharacterCard implements Summoned {
         this.takeDamage(enemy.getTotalAttack());
     }
 
-    public void printInfo() {
-        super.printInfo();
-        System.out.println("Status Summoned Card : ");
-        System.out.println("Attack: " + this.attack);
-        System.out.println("Bonus Attack: " + this.getAttackBonus());
-        System.out.println("Total Attack: " + this.getTotalAttack());
-        System.out.println("Health: " + this.health);
-        System.out.println("Bonus Health: " + this.getAttackBonus());
-        System.out.println("Total Health: " + this.getTotalHp());
-        System.out.println("Level: " + this.level);
-        System.out.printf("Exp: %d/%d\n", this.exp, this.level*2 +1);
-        if (this.activeSpells.size() > 0) {
-            for (SpellCard SC : this.activeSpells) {
-                System.out.print("Spell :");
-                SC.printInfo();
+    public void swapStat() {
+        for (SpellCard SP : this.activeSpells) {
+            if (SP.getTypeSpell() == TypeSpell.POTION) {
+                float tempHealth = ((SpellPotion) SP).getHealthMod();
+                float tempAttack = ((SpellPotion) SP).getAttackMod();
+                ((SpellPotion) SP).setHealthMod(tempAttack);
+                ((SpellPotion) SP).setAttackMod(tempHealth);
             }
-        } else {
-            System.out.println("Tidak memiliki Spell apapun");
         }
 
+        float tempAttack = getAttack();
+        float tempHealth = getHealth();
+        this.setAttack(tempHealth);
+        this.setHealth(tempAttack);
+    }
+
+    public void printInfo() {
+        super.printInfo();
+//        System.out.println("Status Summoned Card : ");
+//        System.out.println("Attack: " + this.attack);
+//        System.out.println("Bonus Attack: " + this.getAttackBonus());
+//        System.out.println("Total Attack: " + this.getTotalAttack());
+//        System.out.println("Health: " + this.health);
+//        System.out.println("Bonus Health: " + this.getHealth());
+//        System.out.println("Total Health: " + this.getTotalHp());
+//        System.out.println("Level: " + this.level);
+//        System.out.printf("Exp: %d/%d\n", this.exp, this.level*2 +1);
+//        if (this.activeSpells.size() > 0) {
+//            for (SpellCard SC : this.activeSpells) {
+//                System.out.print("Spell :");
+//                SC.printInfo();
+//            }
+//        } else {
+//            System.out.println("Tidak memiliki Spell apapun");
+//        }
+
+    }
+    public String getFieldDescription(){
+        String msg = "Base ATK : " + this.attack;
+        msg += "\n";
+        msg += "Base HP : " + this.health;
+        msg += "\n";
+        msg += "Bonus ATK : " + this.getAttackBonus();
+        msg += "\n";
+        msg += "Bonus HP : " + this.getHealthBonus();
+        msg += "\n";
+        msg += "Level : " + this.getLevel();
+        msg += "\n";
+        msg += "EXP : " + this.getExp() + "/" + (this.getLevel()*2-1);
+        msg += "\n";
+        if (this.activeSpells.stream().
+                filter(SC -> SC.getTypeSpell() == TypeSpell.SWAP).
+                findFirst().orElse(null) != null) {
+            msg += "A <-> B";
+        }
+        return msg;
+    }
+    public String getSimpleFieldDesc(){
+        String msg = "A:" + this.getTotalAttack();
+        msg += "\n";
+        msg += "H:" + this.getTotalHp();
+        return msg;
     }
 }

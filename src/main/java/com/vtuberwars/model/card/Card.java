@@ -39,12 +39,17 @@ public abstract class Card {
         return this.manaCost;
     }
     public void printInfo() {
-        System.out.println("id: " + this.id);
-        System.out.println("name: " + this.name);
-        System.out.println("imagePath: " + this.imagePath);
-        System.out.println("description: " + this.description);
-        System.out.println("manaCost: " + this.manaCost);
+//        System.out.println("id: " + this.id);
+//        System.out.println("name: " + this.name);
+//        System.out.println("imagePath: " + this.imagePath);
+//        System.out.println("description: " + this.description);
+//        System.out.println("manaCost: " + this.manaCost);
     }
+    public abstract String getDrawDescription();
     public abstract void apply(CardSpace Fields, int position);
 //    public abstract void render();
+    public abstract String getHandDescription();
+    public String getSimpleDescription(){
+        return this.getDrawDescription();
+    }
 }

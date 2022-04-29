@@ -10,6 +10,8 @@ public interface Summoned {
     public void setHealth(float baseHealth);
     public float getHealth();
 
+
+
     public float getAttackBonus();
     public float getHealthBonus();
 

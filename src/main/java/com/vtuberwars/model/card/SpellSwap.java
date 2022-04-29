@@ -5,7 +5,7 @@ import com.vtuberwars.model.player.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SpellSwap extends SpellCard {
+public class SpellSwap extends SpellCard implements Useable {
 
     public SpellSwap(int id, String name, String imagePath,
                      String description, int manaCost, int duration) {
@@ -23,16 +23,15 @@ public class SpellSwap extends SpellCard {
                         filter(SpellPotion.class::isInstance).
                         map(SpellPotion.class::cast).collect(Collectors.toList());
 
-        for (SpellPotion SP : temp) {
-            float tempHealth = SP.getHealthMod();
-            float tempAttack = SP.getAttackMod();
-            SP.setHealthMod(tempAttack);
-            SP.setAttackMod(tempHealth);
+        for (SpellCard Spell : SM.getActiveSpells()) {
+            if (Spell.getTypeSpell() == TypeSpell.SWAP) {
+                Spell.setDuration(Spell.getDuration()+this.getDuration());
+                return SM;
+            }
         }
-        float tempBaseAttack = SM.getBaseAttack();
-        float tempHealthNow = SM.getBaseHealth();
-        SM.setAttack(tempHealthNow);
-        SM.setHealth(tempBaseAttack);
+
+        SM.addSpell(this);
+        SM.swapStat();
         return SM;
 
 //        int playerMana = player.getMana();
@@ -66,6 +65,27 @@ public class SpellSwap extends SpellCard {
     }
     public void printInfo() {
         super.printInfo();
-        System.out.println("");
+//        System.out.println("");
+    }
+    public String getDrawDescription(){
+        return "ATK <-> HP(" + this.getDuration() + ")";
+    }
+    public String getHandDescription(){
+        String msg = "Duration : \n";
+        if(this.getDuration()>0){
+            msg += this.getDuration() + " Rounds";
+        }else{
+            msg += "Permanent";
+        }
+        return msg;
+    }
+    public String getSimpleDescription(){
+        String msg = "Dur: ";
+        if(this.getDuration()>0){
+            msg += this.getDuration();
+        }else{
+            msg += "inf";
+        }
+        return msg;
     }
 }

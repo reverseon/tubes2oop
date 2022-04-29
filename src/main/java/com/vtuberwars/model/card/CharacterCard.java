@@ -1,8 +1,11 @@
 package com.vtuberwars.model.card;
 
+import java.lang.reflect.Field;
 import java.util.*;
-import com.vtuberwars.model.CLI.GameBoard;
+import java.util.stream.Collectors;
+
 import com.vtuberwars.model.cardspace.CardSpace;
+import com.vtuberwars.util.DeckGenerator;
 
 public class CharacterCard extends Card {
     private TypeCharacter typeCharacter;
@@ -84,17 +87,35 @@ public class CharacterCard extends Card {
     }
     public void printInfo(){
         super.printInfo();
-        System.out.println("Type: " + this.typeCharacter);
-        System.out.println("Base Attack: " + this.baseAttack);
-        System.out.println("Attak Up : " + this.attackUp);
-        System.out.println("Base Health: " + this.baseHealth);
-        System.out.println("Health Up: " + this.healthUp);
+//        System.out.println("Type: " + this.typeCharacter);
+//        System.out.println("Base Attack: " + this.baseAttack);
+//        System.out.println("Attak Up : " + this.attackUp);
+//        System.out.println("Base Health: " + this.baseHealth);
+//        System.out.println("Health Up: " + this.healthUp);
     }
-    public void apply(CardSpace Fields, int position) {
-        System.out.println("Masuk");
+    public void apply(CardSpace Fields, int position) throws RuntimeException {
+//        System.out.println("Masuk");
         if (Fields.getCard(position) == null) {
             SummonedCard SM = new SummonedCard(this);
             Fields.setCard(SM, position);
+            Fields.setNEff(Fields.getNEff()+1);
+        } else {
+            throw new RuntimeException("There's a card there already!");
         }
+    }
+    public String getDrawDescription(){
+        return "ATK " + this.baseAttack + "/HP " + this.baseHealth;
+    }
+
+    public String getHandDescription(){
+        String msg = "ATK : " + this.getBaseAttack() + "\n";
+        msg += "HP : " + this.getBaseHealth() + "\n";
+        msg += "Type : \n" + this.getTypeCharacter();
+        return msg;
+    }
+    public String getSimpleDescription(){
+        String msg = "A: " + this.getBaseAttack() + "\n";
+        msg += "H: " + this.getBaseHealth() + "\n";
+        return msg;
     }
 }

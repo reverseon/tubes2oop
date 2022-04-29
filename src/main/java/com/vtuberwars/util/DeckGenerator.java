@@ -1,6 +1,5 @@
 package com.vtuberwars.util;
 
-import com.vtuberwars.model.CLI.GameBoard;
 import com.vtuberwars.model.card.*;
 import com.vtuberwars.model.cardspace.CardSpace;
 import com.vtuberwars.model.cardspace.DeckCardSpace;
@@ -11,17 +10,20 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class  DeckGenerator {
     public static List<SpellSwap> arrSwap = new ArrayList<SpellSwap>();
     public static List<SpellMorph> arrMorph = new ArrayList<SpellMorph>();
     public static List<SpellPotion> arrPotion = new ArrayList<SpellPotion>();
+    public static List<SpellLevel> arrLevel = new ArrayList<SpellLevel>();
     public static List<CharacterCard> arrCharacter = new ArrayList<CharacterCard>();
 
     private static final String CHARACTER_CSV_FILE_PATH = "card/data/character.csv";
     private static final String SPELL_MORPH_CSV_FILE_PATH = "card/data/spell_morph.csv";
     private static final String SPELL_POTION_CSV_FILE_PATH = "card/data/spell_ptn.csv";
     private static final String SPELL_SWAP_CSV_FILE_PATH = "card/data/spell_swap.csv";
+    private static final String SPELL_LEVEL_CSV_FILE_PATH = "card/data/spell_level.csv";
     private static final String ROOT_TO_RESOURCE_PATH = "/src/main/resources/com/vtuberwars/";
 
     public static void loadCharCards() throws IOException, URISyntaxException {
@@ -71,6 +73,23 @@ public class  DeckGenerator {
             throw e;
         }
     }
+    public static void loadSpellLevelCards() throws IOException, URISyntaxException {
+        try {
+            String cwd = System.getProperty("user.dir");
+            File characterCSVFile = new File(cwd + ROOT_TO_RESOURCE_PATH + SPELL_LEVEL_CSV_FILE_PATH);
+            CSVReader characterReader = new CSVReader(characterCSVFile, "\t");
+            characterReader.setSkipHeader(true);
+            List<String[]> characterRows = characterReader.read();
+            for (String[] row : characterRows) {
+
+                SpellLevel lvlCard = new SpellLevel(Integer.parseInt(row[0]), row[1], cwd + ROOT_TO_RESOURCE_PATH + row[3], row[2], 0, SpellLevel.stringToLevelType.get(row[4]));
+                arrLevel.add(lvlCard);
+            }
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+
 
     public static void loadSpellSwapCards() throws IOException, URISyntaxException {
         try {
@@ -88,6 +107,68 @@ public class  DeckGenerator {
         }
     }
 
+    public static CardSpace loadDeck(String fileName) throws Exception{
+        try {
+            DeckGenerator.loadCharCards();
+            DeckGenerator.loadSpellMorphCards();
+            DeckGenerator.loadSpellPtnCards();
+            DeckGenerator.loadSpellSwapCards();
+            DeckGenerator.loadSpellLevelCards();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (URISyntaxException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            String cwd = System.getProperty("user.dir");
+            File characterCSVFile = new File(cwd + ROOT_TO_RESOURCE_PATH +  "card/data/" + fileName);
+            CSVReader characterReader = new CSVReader(characterCSVFile, "\t");
+            characterReader.setSkipHeader(true);
+            List<String[]> characterRows = characterReader.read();
+            CardSpace a = new CardSpace(characterRows.size());
+            for (String[] row : characterRows) {
+                int id = Integer.parseInt(row[0]);
+                if(id<101){
+                    CharacterCard kartu = CharacterCard.cctorCharacter(
+                            arrCharacter.stream().
+                                    filter(CC -> CC.getId() == id).map(CharacterCard.class::cast).
+                                    collect(Collectors.toList()).get(0)
+                    );
+                    a.insertCard(kartu);
+                }else if(id<201){
+                    SpellPotion kartu = SpellPotion.cctorPotion(arrPotion.stream().
+                            filter(CC -> CC.getId() == id).map(SpellPotion.class::cast).
+                            collect(Collectors.toList()).get(0)
+                    );
+                    a.insertCard(kartu);
+                }else if(id<301){
+                    SpellSwap kartu = SpellSwap.cctorSwap(arrSwap.stream().
+                            filter(CC -> CC.getId() == id).map(SpellSwap.class::cast).
+                            collect(Collectors.toList()).get(0)
+                    );
+                    a.insertCard(kartu);
+                }else if(id<401){
+                    SpellMorph kartu = SpellMorph.cctorMorph(
+                            arrMorph.stream().
+                                    filter(CC -> CC.getId() == id).map(SpellMorph.class::cast).
+                                    collect(Collectors.toList()).get(0)
+                    );
+                    a.insertCard(kartu);
+                }else if(id<501){
+                    SpellLevel kartu = SpellLevel.cctorLevel(
+                            arrLevel.stream().
+                                    filter(CC -> CC.getId() == id).map(SpellLevel.class::cast).
+                                    collect(Collectors.toList()).get(0)
+                    );
+                    a.insertCard(kartu);
+                }
+            }
+            ;
+            return a;
+        } catch (Exception e) {
+            throw e;
+        }
+    };
     public static CardSpace generateDeck(int cardCap){
         Random random = new Random();
         CardSpace deckCardSpace = new CardSpace(cardCap);
@@ -96,6 +177,7 @@ public class  DeckGenerator {
             DeckGenerator.loadSpellMorphCards();
             DeckGenerator.loadSpellPtnCards();
             DeckGenerator.loadSpellSwapCards();
+            DeckGenerator.loadSpellLevelCards();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (URISyntaxException e) {
@@ -103,7 +185,7 @@ public class  DeckGenerator {
         }
 
         //MEMASTIKAN KARTU KARAKTER MINIMAL ADA 15 KARTU
-        int charCardRand = cardCap - 24;
+        int charCardRand = cardCap - 29;
         for(int i = 0; i < charCardRand; i++) {
             deckCardSpace.insertCard(CharacterCard.cctorCharacter(DeckGenerator.arrCharacter.get(random.nextInt(18))));
         }
@@ -119,7 +201,11 @@ public class  DeckGenerator {
         for(int i = 0; i < 5; i++) {
             deckCardSpace.insertCard(SpellMorph.cctorMorph(DeckGenerator.arrMorph.get(random.nextInt(6))));
         }
-//        shuffleDeck(deckCardSpace);
+        //MEMASTIKAN KARTU SPELLLEVEL MINIMAL ADA 5 KARTU
+        for(int i = 0; i < 5; i++) {
+            deckCardSpace.insertCard(SpellLevel.cctorLevel(DeckGenerator.arrLevel.get(random.nextInt(2))));
+        }
+        shuffleDeck(deckCardSpace);
         return deckCardSpace;
     }
     public static void shuffleDeck(CardSpace deckCardSpace) {

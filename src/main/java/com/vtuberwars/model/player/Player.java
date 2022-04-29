@@ -15,37 +15,48 @@ public class Player {
     private CardSpace cardAtField;
     private CardSpace cardAtHand;
 
-    public Player(String name) {
-        this.name = name;
-        this.health = 80;
-        this.mana = 1;
-        this.maxMana = 1;
-        this.cardAtDeck = DeckGenerator.generateDeck(40);
-        this.cardAtField = new CardSpace(5);
-        this.cardAtHand = new CardSpace(5);
-        for (int i = 0; i < 5; i++) {
-            this.cardAtField.getArrayCard().add(null);
-            this.cardAtHand.getArrayCard().add(null);
+    public Player(String name, int cardNum) {
+        try {
+            this.name = name;
+            this.health = 100;
+            this.mana = 1;
+            this.maxMana = 1;
+            this.cardAtDeck = DeckGenerator.generateDeck(cardNum);
+            this.cardAtField = new CardSpace(5);
+            this.cardAtHand = new CardSpace(5);
+            for (int i = 0; i < 5; i++) {
+                this.cardAtField.getArrayCard().add(null);
+                this.cardAtHand.getArrayCard().add(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     public String getName() {
         return this.name;
     }
-    public void setHealth(int health) {
+    public void setHealth(float health) {
         this.health = health;
     }
     public float getHealth() {
         return this.health;
     }
     public void setMana(int mana) {
-        this.mana = mana;
+        if(mana <= 10) {
+            this.mana = mana;
+        }else{
+            this.mana = 10;
+        }
     }
     public int getMana() {
         return this.mana;
     }
     public void setMaxMana(int maxMana) {
-        this.maxMana = maxMana;
+        if(maxMana<=10){
+            this.maxMana = maxMana;
+        }
     }
     public int getMaxMana() {
         return this.maxMana;
@@ -82,18 +93,21 @@ public class Player {
     }
 
     public void addToHand(Card kartu, int deckPosition) {
-        if(getEmptyHandPos() != -1){
-            this.cardAtHand.setCard(kartu, getEmptyHandPos());
-            this.cardAtDeck.deleteCard(deckPosition);
+        if(this.cardAtHand.getNEff()==5){
+            this.cardAtHand.setNullSpace(0);
         }
+//        System.out.println("wakwaw " + this.cardAtHand.getNEff() + " " + getEmptyHandPos());
+        this.cardAtHand.setCard(kartu, getEmptyHandPos());
+        this.cardAtDeck.deleteCard(deckPosition);
+        this.cardAtHand.setNEff(this.cardAtHand.getNEff()+1);
     }
 
     public void discardHand(int handPosition) {
-        this.cardAtHand.deleteCard(handPosition);
+        this.cardAtHand.setNullSpace(handPosition);
     }
 
     public void discardField(int fieldPosition) {
-        this.cardAtField.deleteCard(fieldPosition);
+        this.cardAtField.setNullSpace(fieldPosition);
     }
 
     public void pickACardFromDeck(int id) {
@@ -102,18 +116,22 @@ public class Player {
     }
 
 
-    public void attack(Player playerEnemy, int enemyFieldPosition, int playerFieldPosition) {
-        SummonedCard playerCard = (SummonedCard) this.getACardAtField(playerFieldPosition);
-        SummonedCard enemyCard = (SummonedCard) playerEnemy.getACardAtField(enemyFieldPosition);
-        int power = CharacterCard.characterType.get(enemyCard.getTypeCharacter()) - CharacterCard.characterType.get(playerCard.getTypeCharacter());
-        if(power == 2){
-            power = -1;
-        } else if (power == -2) {
-            power = 1;
+    public void attack(Player playerEnemy, int enemyFieldPosition, int playerFieldPosition) throws Exception {
+        try{
+            SummonedCard playerCard = (SummonedCard) this.getACardAtField(playerFieldPosition);
+            SummonedCard enemyCard = (SummonedCard) playerEnemy.getACardAtField(enemyFieldPosition);
+            int power = CharacterCard.characterType.get(enemyCard.getTypeCharacter()) - CharacterCard.characterType.get(playerCard.getTypeCharacter());
+            if(power == 2){
+                power = -1;
+            } else if (power == -2) {
+                power = 1;
+            }
+            playerCard.takeDamage(enemyCard.getTotalAttack()* (float)Math.pow(2,power));
+            enemyCard.takeDamage(playerCard.getTotalAttack()* (float)Math.pow(2,(-power)));
+        }catch (Exception e){
+            throw new RuntimeException("You can't attack an empty space");
         }
 
-        playerCard.takeDamage(enemyCard.getTotalAttack()* (float)Math.pow(2,power));
-        enemyCard.takeDamage(playerCard.getTotalAttack()* (float)Math.pow(2,(-power)));
     }
 
 //    public void use(SpellCard SC) {

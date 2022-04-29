@@ -34,13 +34,25 @@ public class CardSpace {
     public void setNEff(int NEff) {
         this.NEff = NEff;
     }
-    public Card[] getTop3Card() {
-        Card[] result = new Card[3];
-
-        return result;
+    public DrawHolder getTop3Card() {
+        Random random = new Random();
+        DrawHolder holder = new DrawHolder();
+        for(int i = 0;i<this.NEff;i++){
+            if (this.NEff <= 3) {
+                holder.insertCard(this.ArrayCard.get(i), i);
+            } else {
+                int randomNum = random.nextInt(this.NEff);
+                holder.insertCard(this.ArrayCard.get(randomNum),randomNum);
+            }
+        }
+        return holder;
     }
     public void deleteCard(int Position) {
-        this.setCard(null,Position);
+        this.ArrayCard.remove(Position);
+        this.setNEff(this.getNEff()-1);
+    }
+    public void setNullSpace(int Position){
+        this.ArrayCard.set(Position,null);
         this.setNEff(this.getNEff()-1);
     }
     public int getMaxCap(){return this.MaxCap;}
@@ -54,6 +66,7 @@ public class CardSpace {
         this.ArrayCard.set(former,this.ArrayCard.get(latter));
         this.ArrayCard.set(latter,temp);
     }
+
 //    public Card[] getAllCard() {
 //        return this.ArrayCard;
 //    }

@@ -2,7 +2,7 @@ package com.vtuberwars.model.card;
 
 import com.vtuberwars.model.player.*;
 
-public class SpellPotion extends SpellCard  {
+public class SpellPotion extends SpellCard implements Useable {
     private float healthMod;
     private float attackMod;
 
@@ -35,12 +35,60 @@ public class SpellPotion extends SpellCard  {
 
     public SummonedCard use(SummonedCard SM) {
         SM.addSpell(this);
+        if (SM.getTotalHp() <= 0) {
+            SM = null;
+        }
         return SM;
     }
     public void printInfo() {
         super.printInfo();
-        System.out.println("Health Mod: " + this.healthMod);
-        System.out.println("Attack Mod: " + this.attackMod);
-        System.out.println("");
+//        System.out.println("Health Mod: " + this.healthMod);
+//        System.out.println("Attack Mod: " + this.attackMod);
+//        System.out.println("");
+    }
+    public String getDrawDescription(){
+        String desc = "ATK";
+        if(this.attackMod >=0){
+            desc += "+";
+        }
+        desc += this.attackMod + "/HP";
+        if(this.healthMod >=0){
+            desc += "+";
+        }
+        desc += this.healthMod;
+        return desc;
+    }
+    public String getHandDescription(){
+        String msg = "ATK : ";
+        if(this.attackMod>=0){
+            msg += "+";
+        }
+        msg += this.attackMod;
+        msg += "\n";
+        msg += "HP : ";
+        if(this.healthMod>=0){
+            msg += "+";
+        }
+        msg += this.healthMod;
+        msg += "\n";
+        msg += "Duration : \n";
+        if(this.getDuration()>0){
+            msg += this.getDuration() + " Rounds";
+        }else{
+            msg += "Permanent";
+        }
+        return msg;
+    }
+    public String getSimpleDescription(){
+        String msg = "H: ";
+        if(this.healthMod>=0){
+            msg += "+";
+        }
+        msg += this.getHealthMod() + " A: ";
+        if(this.attackMod>=0){
+            msg+= "+";
+        }
+        msg += this.attackMod;
+        return msg;
     }
 }

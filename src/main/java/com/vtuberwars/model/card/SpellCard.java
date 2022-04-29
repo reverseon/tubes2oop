@@ -2,7 +2,7 @@ package com.vtuberwars.model.card;
 
 import com.vtuberwars.model.cardspace.CardSpace;
 
-public abstract class SpellCard extends Card implements HaveDuration {
+public abstract class SpellCard extends Card implements HaveDuration, Useable {
     private TypeSpell typeSpell;
     private int duration;
 
@@ -25,13 +25,26 @@ public abstract class SpellCard extends Card implements HaveDuration {
     }
     public void printInfo() {
         super.printInfo();
-        System.out.println("Type: " + this.typeSpell);
-        System.out.println("Duration: " + this.duration);
+//        System.out.println("Type: " + this.typeSpell);
+//        System.out.println("Duration: " + this.duration);
     }
-    public void apply(CardSpace Fields, int position) {
+    public void apply(CardSpace Fields, int position) throws RuntimeException {
         if (Fields.getCard(position) != null) {
-            ((SummonedCard) Fields.getCard(position)).addSpell((SpellCard) this);
+            SummonedCard SM = ((SummonedCard) Fields.getCard(position));
+            if (this.getTypeSpell() == TypeSpell.LEVEL) {
+                int level = SM.getLevel();
+                int manaCost = (int) Math.ceil((level) / 2.0);
+                super.setManaCost(manaCost);
+                if (((SummonedCard) Fields.getCard(position)).getTotalHp() <= 0) {
+                    Fields.setNullSpace(position);
+                }
+            }
+            Fields.setCard(this.use(SM), position);
+        } else {
+            throw new RuntimeException("You can't use spell on empty field");
         }
     }
     public abstract SummonedCard use(SummonedCard SM);
+    public abstract String getDrawDescription();
+    public abstract String getHandDescription();
 }

@@ -9,7 +9,6 @@ public class ModifiableCardSpace extends CardSpace {
     }
 
 
-
     public void addCard(Card Kartu, int Position) {
         this.setCard(Kartu,Position);
         this.setNEff(this.getNEff()+1);

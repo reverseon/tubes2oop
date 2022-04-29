@@ -1,0 +1,16 @@
+.button{
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-font-family: "Lucida Console";
+    -fx-text-fill: black;
+}
+
+.button:focused {
+    -fx-background-color: #7ec8e3;
+}
+
+.button:pressed {
+    -fx-background-color: #7ec8e3;
+}

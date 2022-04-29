@@ -2,8 +2,15 @@ package com.vtuberwars.model.card;
 
 import com.vtuberwars.model.player.*;
 
-public class SpellLevel extends SpellCard {
+import java.util.HashMap;
+
+public class SpellLevel extends SpellCard implements Useable {
     private LevelSpellType typeLevel;
+    public static HashMap<String,LevelSpellType> stringToLevelType = new HashMap<String, LevelSpellType>();
+    static {
+        stringToLevelType.put("+",LevelSpellType.LVLUP);
+        stringToLevelType.put("-",LevelSpellType.LVLDOWN);
+    }
 
     public SpellLevel(int id, String name, String imagePath, String description,
                       int duration, LevelSpellType typeLevel) {
@@ -26,8 +33,16 @@ public class SpellLevel extends SpellCard {
         } else {
             SM.levelDown();
         }
-        SM.addSpell(this);
         return SM;
     }
-
+    public static SpellLevel cctorLevel(SpellLevel spellLevel) {
+        return new SpellLevel(spellLevel.getId(), spellLevel.getName(), spellLevel.getImagePath(), spellLevel.getDescription(), 0, spellLevel.getTypeLevelSpell());
+    }
+    public String getDrawDescription(){
+        return "Level " + (this.getTypeLevelSpell().equals(LevelSpellType.LVLUP)? "up" : "down") + "\none card";
+    }
+    public String getHandDescription(){
+        return "";
+    }
+    public String getSimpleDescription(){ return "Lvl " + (this.getTypeLevelSpell().equals(LevelSpellType.LVLUP)? "up" : "down");}
 }

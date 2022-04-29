@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane id="main_panel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vtuberwars.card.ui.MainController">
+  <columnConstraints>
+    <ColumnConstraints />
+    <ColumnConstraints hgrow="ALWAYS" maxWidth="634.0" minWidth="10.0" prefWidth="542.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="825.0" minWidth="10.0" prefWidth="155.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="825.0" minWidth="10.0" prefWidth="543.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="232.0" minHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="585.0" minHeight="10.0" prefHeight="339.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="316.0" minHeight="0.0" prefHeight="13.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="391.0" minHeight="10.0" prefHeight="183.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="207.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button fx:id="fc_btn" defaultButton="true" mnemonicParsing="false" opacity="0.0" text="Button" GridPane.columnIndex="1" />
+      <ProgressBar id="player_1_health" fx:id="p1_hbar" maxWidth="1.7976931348623157E308" prefHeight="39.0" progress="0.88" style="-fx-accent: green;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+      <ProgressBar id="player_2_health" fx:id="p2_hbar" maxWidth="1.7976931348623157E308" prefHeight="39.0" progress="0.82" style="-fx-scale-x: -1; -fx-accent: green;" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" />
+      <Label id="turn_status" fx:id="game_current_state" alignment="CENTER" maxWidth="-Infinity" prefHeight="73.0" prefWidth="184.0" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-size: 20; -fx-text-fill: &quot;black&quot;;" text="Turn 1&#10;Player 1&#10;Draw" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" />
+      <GridPane id="player_1_deck" hgap="10.0" maxHeight="1.7976931348623157E308" prefHeight="150.0" prefWidth="524.0" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button id="field_p2_3" fx:id="field_p1_1" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p1_1_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p1_1_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p1_1_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p1_2" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p1_2_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p1_2_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p1_2_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p1_3" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p1_3_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p1_3_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p1_3_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p1_4" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p1_4_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p1_4_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p1_4_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p1_5" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p1_5_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p1_5_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p1_5_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p1_ava_atk" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#atkP1" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.rowSpan="2">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p1_ava" fitHeight="110.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../image/character/megumin.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </GridPane>
+      <GridPane id="hand_deck" hgap="5.0" maxHeight="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints />
+        </rowConstraints>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <children>
+            <Button id="field_p2_3" fx:id="hand_4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#hand_4_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowSpan="2">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="hand_4_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="hand_4_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10&#10;H: 12&#10;E: 0/1" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="hand_1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#hand_1_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="hand_1_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="hand_1_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="M: 5&#10;E: ATK&lt;-&gt;HP" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="hand_2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#hand_2_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="1">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="hand_2_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="hand_2_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="M: 5&#10;E: ATK+3" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="hand_3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#hand_3_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="2">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="hand_3_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="hand_3_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="Empty" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="hand_5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#hand_5_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="4">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="hand_5_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="hand_5_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="M: 5&#10;E: DEF+2" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+      <ImageView fx:id="card_ava" fitHeight="121.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <GridPane id="panel_info" GridPane.columnIndex="3" GridPane.rowIndex="3">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="227.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="314.0" minWidth="10.0" prefWidth="217.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="99.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="227.0" style="-fx-border-color: black; -fx-border-width: 3 0 3 3;" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <left>
+                  <Text id="info_stats" fx:id="detail_stats" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-size: 14;" text="ATK: 1&#10;HP: 1&#10;Level: 1&#10;EXP: 0/1&#10;Type: Overworld" wrappingWidth="137.23696899414062" BorderPane.alignment="TOP_LEFT">
+                     <BorderPane.margin>
+                        <Insets left="20.0" />
+                     </BorderPane.margin></Text>
+               </left>
+               <top>
+                  <Label id="info_name" fx:id="detail_title" maxWidth="-Infinity" prefHeight="33.0" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-size: 20; -fx-font-weight: 800;" text="Megumin" wrapText="true" BorderPane.alignment="CENTER_LEFT">
+                     <BorderPane.margin>
+                        <Insets bottom="5.0" left="18.0" top="20.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+            </BorderPane>
+            <BorderPane maxWidth="1.7976931348623157E308" prefHeight="169.0" prefWidth="198.0" style="-fx-border-color: black; -fx-border-width: 3 0 3 3;" GridPane.columnIndex="1" GridPane.rowSpan="2">
+               <left>
+                  <Text id="info_desc" fx:id="detail_desc" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-size: 16;" text="Megumin (めぐみん) is an Arch Wizard of the Crimson Magic Clan in the Fantasy World, and is the first person to join Kazuma's party." wrappingWidth="171.23696899414062" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </BorderPane.margin>
+                  </Text>
+               </left>
+            </BorderPane>
+            <BorderPane maxWidth="1.7976931348623157E308" prefHeight="169.0" prefWidth="198.0" style="-fx-border-color: black; -fx-border-width: 3 3 0 3;" GridPane.columnIndex="2">
+               <center>
+                  <Label id="info_deck" fx:id="detail_deck" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-size: 20;" text="Deck&#10;35/40" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <BorderPane maxWidth="1.7976931348623157E308" prefHeight="169.0" prefWidth="198.0" style="-fx-border-color: black; -fx-border-width: 3;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <center>
+                  <Label id="info_mana" fx:id="detail_mana" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-size: 20;" text="Mana&#10;0/1" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </GridPane>
+      <GridPane id="player_1_deck" hgap="10.0" maxHeight="1.7976931348623157E308" prefHeight="150.0" prefWidth="524.0" vgap="10.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="182.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button id="field_p2_3" fx:id="field_p2_2" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p2_2_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p2_2_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p2_2_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p2_1" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p2_1_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p2_1_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p2_1_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p2_4" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p2_4_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p2_4_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p2_4_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p2_3" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p2_3_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p2_3_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p2_3_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p2_5" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#card_p2_5_click" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p2_5_img" fitHeight="92.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="field_p2_5_desc" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="104.0" text="A: 10 H: 12&#10;E: 0/1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+            <Button id="field_p2_3" fx:id="field_p2_ava_atk" maxHeight="160.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#atkP2" prefHeight="160.0" stylesheets="@fieldbutton.css" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowSpan="2">
+               <graphic>
+                  <GridPane maxHeight="1.7976931348623157E308">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="65.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView id="field_p2_3_img" fx:id="field_p2_ava" fitHeight="156.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../image/character/enderdragon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+      <Label fx:id="turn_feedback" prefHeight="41.0" prefWidth="593.0" style="-fx-font-size: 20; -fx-font-family: &quot;Lucida Console&quot;;" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <GridPane GridPane.columnIndex="3" GridPane.rowIndex="4">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button id="btn_next" fx:id="next_phase_btn" mnemonicParsing="false" onAction="#nextAction" prefHeight="50.0" prefWidth="100.0" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-weight: 900; -fx-font-size: 16;" text="Next" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="up_card_btn" mnemonicParsing="false" onAction="#lvup_fields" prefHeight="50.0" prefWidth="100.0" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-weight: 900; -fx-font-size: 16;" text="Level Up" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <Button fx:id="discard_hand_btn" mnemonicParsing="false" onAction="#discard_hand" prefHeight="50.0" prefWidth="100.0" style="-fx-font-family: &quot;Lucida Console&quot;; -fx-font-weight: 900; -fx-font-size: 16;" text="Discard" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</GridPane>

@@ -5,7 +5,7 @@ import com.vtuberwars.util.DeckGenerator;
 
 import java.util.stream.Collectors;
 
-public class SpellMorph extends SpellCard  {
+public class SpellMorph extends SpellCard implements Useable {
     private int targetId;
 
     public SpellMorph(int id, String name, String imagePath, String description,
@@ -23,6 +23,7 @@ public class SpellMorph extends SpellCard  {
     }
 
     public SummonedCard use(SummonedCard SM) {
+
         SM = new SummonedCard(DeckGenerator.arrCharacter.stream().
                 filter(CC -> CC.getId() == this.targetId).map(CharacterCard.class::cast).
                 collect(Collectors.toList()).get(0));
@@ -39,7 +40,33 @@ public class SpellMorph extends SpellCard  {
     }
     public void printInfo() {
         super.printInfo();
-        System.out.println("Target Id: " + this.targetId);
-        System.out.println("");
+//        System.out.println("Target Id: " + this.targetId);
+//        System.out.println("");
+    }
+    public String getDrawDescription(){
+        SummonedCard SM = new SummonedCard(DeckGenerator.arrCharacter.stream().
+                filter(CC -> CC.getId() == this.targetId).map(CharacterCard.class::cast).
+                collect(Collectors.toList()).get(0));
+        return "Turn you into a\n" + SM.getName();
+    }
+    public String getHandDescription(){
+        SummonedCard SM = new SummonedCard(DeckGenerator.arrCharacter.stream().
+                filter(CC -> CC.getId() == this.targetId).map(CharacterCard.class::cast).
+                collect(Collectors.toList()).get(0));
+        String msg = "Target : \n" + SM.getName();
+        msg += "\n\n";
+        msg += "Duration : \n";
+        if(this.getDuration()>0){
+            msg += this.getDuration() + " Rounds";
+        }else{
+            msg += "Permanent";
+        }
+        return msg;
+    }
+    public String getSimpleDescription(){
+        SummonedCard SM = new SummonedCard(DeckGenerator.arrCharacter.stream().
+                filter(CC -> CC.getId() == this.targetId).map(CharacterCard.class::cast).
+                collect(Collectors.toList()).get(0));
+        return SM.getName();
     }
 }

@@ -122,19 +122,18 @@ public class VTuberWars extends Application {
 
   public void nextTurn() {
     whatTurn++;
-    if ((whatTurn + 1) % 2 == 0) {
-//      System.out.println("NEXT ROUND");
-      CardSpace p1csp = p1.getCardsAtField();
-      CardSpace p2csp = p2.getCardsAtField();
-      for (int i = 0; i < 5; i++) {
-        if (p1csp.getCard(i) != null) {
-          ((SummonedCard)p1csp.getCard(i)).reduceSpell();
-        }
-        if (p2csp.getCard(i) != null) {
-          ((SummonedCard)p2csp.getCard(i)).reduceSpell();
-        }
+    
+    CardSpace p1csp = p1.getCardsAtField();
+    CardSpace p2csp = p2.getCardsAtField();
+    for (int i = 0; i < 5; i++) {
+      if (p1csp.getCard(i) != null) {
+        ((SummonedCard)p1csp.getCard(i)).reduceSpell();
+      }
+      if (p2csp.getCard(i) != null) {
+        ((SummonedCard)p2csp.getCard(i)).reduceSpell();
       }
     }
+
     if (whoseTurn.equals(TurnPlayer.PLAYER1)) {
       whoseTurn = TurnPlayer.PLAYER2;
       p2.setMana(((Integer)(whatTurn + 1) / 2));

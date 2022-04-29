@@ -159,7 +159,7 @@ public class MainController extends VTuberWars implements Initializable {
             detail_title.setText("Nothing");
 
             // state settings
-            game_current_state.setText("Round " + ((Integer)(whatTurn + 1) / 2) + "\n"+ whoseTurn +"\n" + whatPhase);
+            game_current_state.setText("Turn " + whatTurn + "\n"+ whoseTurn +"\n" + whatPhase);
             double hp1p = (double)this.p1.getHealth()/80.0;
             double hp2p = (double)this.p2.getHealth()/80.0;
             p1_hbar.setProgress(hp1p > 0 ? hp1p : 0);

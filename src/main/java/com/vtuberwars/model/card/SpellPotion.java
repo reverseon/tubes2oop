@@ -73,7 +73,7 @@ public class SpellPotion extends SpellCard implements Useable {
         msg += "\n";
         msg += "Duration : \n";
         if(this.getDuration()>0){
-            msg += this.getDuration() + " Rounds";
+            msg += this.getDuration() + " Turn(s)";
         }else{
             msg += "Permanent";
         }

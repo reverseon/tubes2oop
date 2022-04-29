@@ -73,7 +73,7 @@ public class SpellSwap extends SpellCard implements Useable {
     public String getHandDescription(){
         String msg = "Duration : \n";
         if(this.getDuration()>0){
-            msg += this.getDuration() + " Rounds";
+            msg += this.getDuration() + " Turn(s)";
         }else{
             msg += "Permanent";
         }

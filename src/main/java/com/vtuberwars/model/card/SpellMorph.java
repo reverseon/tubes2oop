@@ -57,7 +57,7 @@ public class SpellMorph extends SpellCard implements Useable {
         msg += "\n\n";
         msg += "Duration : \n";
         if(this.getDuration()>0){
-            msg += this.getDuration() + " Rounds";
+            msg += this.getDuration() + " Turn(s)";
         }else{
             msg += "Permanent";
         }

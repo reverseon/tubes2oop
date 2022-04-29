@@ -18,7 +18,7 @@ public class Player {
     public Player(String name, int cardNum) {
         try {
             this.name = name;
-            this.health = 100;
+            this.health = 80;
             this.mana = 1;
             this.maxMana = 1;
             this.cardAtDeck = DeckGenerator.generateDeck(cardNum);
@@ -31,7 +31,23 @@ public class Player {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    }
+    public Player(String name, String fileName) {
+        try {
+            this.name = name;
+            this.health = 80;
+            this.mana = 1;
+            this.maxMana = 1;
+            this.cardAtDeck = DeckGenerator.loadDeck(fileName);
+            this.cardAtField = new CardSpace(5);
+            this.cardAtHand = new CardSpace(5);
+            for (int i = 0; i < 5; i++) {
+                this.cardAtField.getArrayCard().add(null);
+                this.cardAtHand.getArrayCard().add(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String getName() {
@@ -81,6 +97,7 @@ public class Player {
         Card tmp = this.cardAtHand.getCard(handPosition);
         this.cardAtField.setCard(tmp, fieldPosition);
         this.cardAtHand.deleteCard(handPosition);
+        this.cardAtField.setNEff((this.cardAtField.getNEff()+1));
     }
 
     public int getEmptyHandPos(){

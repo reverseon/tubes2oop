@@ -182,8 +182,8 @@ public class MainController extends VTuberWars implements Initializable {
                     // attack
                     if (alreadyAttack[lastBtnClicked % 5] == false) {
 //                        System.out.println("1");
-                        alreadyAttack[lastBtnClicked % 5] = true;
                         attack_card(p1, p2, lastBtnClicked, btn_id);
+                        alreadyAttack[lastBtnClicked % 5] = true;
                     } else if (alreadyAttack[lastBtnClicked % 5] == true) {
 //                        System.out.println("2");
                         throw new Exception("You can't attack Twice");
@@ -195,8 +195,8 @@ public class MainController extends VTuberWars implements Initializable {
                     // attack
                     if (alreadyAttack[lastBtnClicked % 5] == false) {
 //                        System.out.println("1");
-                        alreadyAttack[lastBtnClicked % 5] = true;
                         attack_card(p1, p2, lastBtnClicked, btn_id);
+                        alreadyAttack[lastBtnClicked % 5] = true;
                     } else if (alreadyAttack[lastBtnClicked % 5] == true) {
 //                        System.out.println("2");
                         throw new Exception("You can't attack twice!");
@@ -211,9 +211,9 @@ public class MainController extends VTuberWars implements Initializable {
                         throw new Exception("You can't attack the player!");
                     } else {
                         if (alreadyAttack[lastBtnClicked % 5] == false) {
-                            alreadyAttack[lastBtnClicked % 5] = true;
                             p1.setHealth(p1.getHealth() - ((SummonedCard)p2.getACardAtField(lastBtnClicked % 5)).getTotalAttack());
                             switchToMain();
+                            alreadyAttack[lastBtnClicked % 5] = true;
                         } else {
                             throw new Exception("You can't attack twice!");
                         }
@@ -228,9 +228,9 @@ public class MainController extends VTuberWars implements Initializable {
                     }
                     else {
                         if (alreadyAttack[lastBtnClicked % 5] == false) {
-                            alreadyAttack[lastBtnClicked % 5] = true;
                             p2.setHealth(p2.getHealth() - ((SummonedCard)p1.getACardAtField(lastBtnClicked % 5)).getTotalAttack());
                             switchToMain();
+                            alreadyAttack[lastBtnClicked % 5] = true;
                         } else {
                             throw new Exception("You can't attack twice!");
                         }

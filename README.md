@@ -1,31 +1,67 @@
-# IF2210 Project Template
+# IF2210 Card Game Project 
 
-Here is an example of project using gradle as the build tools.
-Try running these commands:
+## About
 
-`./gradlew run`
+This application is about a card game of two person. This app is built by Java and JavaFX for the GUI. Game will start with showing the boardgame in perspective of the first player. The game will continue to the draw pahse when click the next button. This game has 4 phase, draw phase, plan phase, attack phase, and end phase. Player could move to the next phase by click the next button at the right bottom of the window. It will be game over when one of the player health reach 0 or there is no more card in the deck.
 
-You will notice that it will open a window that display 'Minecraft: Aether Wars'.
-In the command line you can see the data that is being read by `CSVReader.java`
+## Code Structure
+```
+src
+└───main
+    ├───java
+    │   └───com
+    │       └───vtuberwars
+    │           ├───CLI
+    │           ├───Jtest
+    │           ├───card
+    │           │   └───ui
+    │           ├───model
+    │           │   ├───card
+    │           │   ├───cardspace
+    │           │   ├───code
+    │           │   ├───exception
+    │           │   └───player
+    │           └───util
+    └───resources
+        └───com
+            └───vtuberwars
+                └───card
+                    ├───data
+                    ├───image
+                    │   ├───character
+                    │   └───spell
+                    │       ├───level
+                    │       ├───morph
+                    │       ├───potion
+                    │       └───swap
+                    └───ui
+```
 
-What happen is when you use `./gradlew run`, it will start the main function in your app.
-For this app, the main function lives in `AetherWars.java`.
+## Preqrequisites
 
-You can explore more about gradle [here](https://guides.gradle.org/creating-new-gradle-builds/)
+Things to have before start this application
+* Java 8
+* Gradle
 
-## JDK
+## How To Compile
 
-As of the creation of this template, the assistant team used and tested the JDK 8 installation from OpenJDK and Amazon Corretto (since JavaFX is readily available on those installations). You can easily pick and install your desired JDK version and variant by doing it via an IDE like [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+To compile this application, you need to follow this step:
+1. Open project root using IntelliJ IDEA
+2. Open Gradle
+3. Build Project
 
-## Credit
+## How to Run
+To run this application, you need to follow this step:
+1. Open Gradle using IntelliJ IDEA
+2. Choose application, and the click run
 
-Minecraft images and description are taken from [Minecraft Wikia](https://minecraft.fandom.com/wiki/)
-Other sources for "random" images are:
+## Authors
+* **Timothy Stanley Setiawan** - *13520028*
+* **Muhammad Akmal Arifin** - *13520037*
+* **Andreas Indra Kurniawan** - *13520091*
+* **Thirafi Najwan Kurniatama** - *13520157*
 
-- Album Supporteran STEI 2018 :D
-- https://mobile.twitter.com/masterlimbad6
-- https://www.nationalgeographic.com/science/article/141104-kamikaze-kublai-khan-winds-typhoon-japan-invasion
-- https://open.spotify.com/album/3GzwPyPZCyrqUTaurTaS23
-- https://cdn.wccftech.com/wp-content/uploads/2021/06/nvidia-geforce-rtx-3080-ti-product-gallery-photo-003-scaled.jpg
-- https://twitter.com/GGumiliar
-- https://dota2.fandom.com/wiki/Spectre
+## Screenshots
+![game open](screenshots/game_open.png)
+![choose card](screenshots/choose_card.png)
+![gameplay](screenshots/gameplay.png)
